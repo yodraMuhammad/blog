@@ -75,16 +75,5 @@
 </div>
 
 @endsection
-{{-- Category::create([
-    'name' => 'programming',
-    'slug' => 'programming'
-])
 
-Post::create([
-    'title' => 'Judul Kedua',
-    'category_id' => 2,
-    'slug' => 'judul-kedua',
-    'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi explicabo, doloribus aspernatur delectus exercitationem numquam tempore fuga officia labore culpa',
-    'body' => '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi explicabo, doloribus aspernatur delectus exercitationem numquam tempore fuga officia labore culpa sit iste voluptas quaerat totam. Perferendis vitae ab aut, nemo velit aperiam, ad pariatur voluptates ducimus ex asperiores maxime quos atque libero commodi. Sint incidunt consequuntur ducimus facilis reiciendis quos blanditiis vel omnis, alias, doloremque nihil.</p><p> Enim, a officiis sunt dignissimos perspiciatis nobis repudiandae, nam unde cupiditate facere ratione. Illo, nihil reprehenderit mollitia laborum corrupti aperiam necessitatibus nemo vitae fugiat nulla repudiandae eum blanditiis provident, molestias, dignissimos praesentium? Voluptatem est magni rem nihil laudantium magnam unde excepturi, pariatur adipisci! Laboriosam?</p>'
-]) --}}
 
