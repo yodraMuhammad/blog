@@ -34,13 +34,14 @@
 
 <script>
   const title = document.querySelector('#title');
-  const slug = document.querySelector('#slug');
+  const slugs = document.querySelector('#slug');
 
   title.addEventListener('change', function(){
-    fetch('/dashbord/posts/checkSlug?title' + title.value)
-      .then(response => response.json())
-      .then(data => slug.value = data.slug)
-  });
+    fetch('/dasboard/posts/checkSlug?title='+title.value+'')
+    .then(response => response.json())
+    .then(data => slugs.value = data.slug)
+    // console.log(data.slug);
+  })
 
   document.addEventListener('trix-file-accept', function(e){
     e.preventDefault();
