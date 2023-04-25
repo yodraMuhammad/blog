@@ -7,6 +7,7 @@
 </div>
 
 <div class="table-responsive">
+  <a href="/dashboard/posts/create" class="btn btn-primary b-3">Create new post</a>
     <table class="table table-striped table-sm">
       <thead>
         <tr>
@@ -26,12 +27,11 @@
                 <a href="/dashboard/posts/{{$post->slug}}" class="badge bg-success" title="Detail"><span data-feather="eye"></span></a>
                 <a href="/dashboard/posts/{{$post->id}}" class="badge bg-warning" title="Edit"><span data-feather="edit"></span></a>
                 <a href="/dashboard/posts/{{$post->id}}" class="badge bg-danger" title="Delete"><span data-feather="x-circle"></span></a>
-
             </td>
         </tr>
         @endforeach
       </tbody>
     </table>
-  </div>
+</div>
 
 @endsection()
