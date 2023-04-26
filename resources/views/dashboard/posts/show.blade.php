@@ -6,8 +6,12 @@
     <div class="row justify-content-center my-5">
         <div class="col-lg-8">
             <h1>{{$post->title}}</h1>
-            <a href="/post" class="btn btn-warning gap-2  justify-content-md-end"><span data-feather="edit"></span> Edit</a>
-            <a href="/post" class="btn btn-danger gap-2  justify-content-md-end"><span data-feather="delete"></span> Delete</a>
+            <a href="/dashboard/posts/{{$post->slug}}/edit" class="badge bg-warning gap-2  justify-content-md-end" style="text-decoration: none"><span data-feather="edit"></span> Edit</a>
+            <form action="/dashboard/posts/{{$post->slug}}" method="post" class="d-inline">
+                @method('delete')
+                @csrf
+                <button class="badge bg-danger border-0" title="Delete" onclick="return confirm('Are you sure ?')"><span data-feather="x-circle"></span> Delete</button>
+              </form>
             <img src="https://source.unsplash.com/1200x400?{{$post->category->name}}" alt="{{$post->category->name}}" class="img-fluid mt-3">
             <article class="my-3 fs-6">
                 {!! $post->body !!}
@@ -15,7 +19,7 @@
             
         </div>
         <div class="d-grid gap-2 col-md-8 justify-content-md-end">
-            <a href="/dashboard/posts" class="btn btn-primary gap-2  justify-content-md-end"><span data-feather="arrow-left"></span> back to my posts</a>
+            <a href="/dashboard/posts" class="btn btn-primary gap-2  justify-content-md-end"><span data-feather="arrow-left"></span> Back to all posts</a>
         </div>
     </div>
 </div>
