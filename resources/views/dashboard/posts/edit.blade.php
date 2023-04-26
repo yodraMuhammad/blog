@@ -6,9 +6,10 @@
     <h1 class="h2">Edit Posts</h1>
 </div>
 
-<form method="POST" action="/dashboard/posts/{{$post->slug}}" class="mb-5">
+<form method="POST" action="/dashboard/posts/{{$post->slug}}" class="mb-5" enctype="multipart/form-data">
   @method('put')
     @csrf
+    {{-- Title --}}
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
       <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{old('title',$post->title)}}" required autofocus>
@@ -18,6 +19,8 @@
         </div> 
       @enderror
     </div>
+
+    {{-- Slug --}}
     <div class="mb-3">
       <label for="slug" class="form-label">Slug</label>
       <input type="text" class="form-control  @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{old('slug',$post->slug)}}">
@@ -27,6 +30,8 @@
         </div> 
       @enderror
     </div>
+
+    {{-- Category --}}
     <div class="mb-3">
       <label for="category" class="form-label">Category</label>
       <select class="form-select" name="category_id">
@@ -39,6 +44,29 @@
         @endforeach
       </select>
     </div>
+
+    {{-- Image --}}
+    <div class="mb-3">
+      <label for="image" class="form-label">Post Image</label>
+      <input type="hidden" name="oldImage" value="{{$post->image}}">
+      <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" onchange="previewImage()">
+      @error('image') 
+        <div class="invalid-feedback">
+          {{$message}}  
+        </div> 
+      @enderror
+      <div class="row mt-3">
+        <div class="col-lg-8">
+          @if ($post->image)
+            <img src="{{asset('storage/'. $post->image)}}" class="img-preview img-fluid">
+          @else
+            <img class="img-preview img-fluid">
+          @endif
+        </div>
+      </div>
+    </div>
+
+    {{-- Body --}}
     <div class="mb-3">
       <label for="body" class="form-label">Body</label>
       <input id="body" type="hidden" name="body" value="{{old('body',$post->body)}}">
@@ -53,6 +81,8 @@
 </form>
 
 <script>
+
+  // Text Editor
   const title = document.querySelector('#title');
   const slugs = document.querySelector('#slug');
 
@@ -60,12 +90,26 @@
     fetch('/dasboard/posts/checkSlug?title='+title.value+'')
     .then(response => response.json())
     .then(data => slugs.value = data.slug)
-    // console.log(data.slug);
   })
 
   document.addEventListener('trix-file-accept', function(e){
     e.preventDefault();
   })
+
+  // Preview Image
+  function previewImage(){
+    const image = document.querySelector('#image')
+    const imgPreview = document.querySelector('.img-preview')
+
+    imgPreview.style.display = 'block';
+
+    const oFReader = new FileReader();
+    oFReader.readAsDataURL(image.files[0]);
+
+    oFReader.onload = function(oFREvent){
+      imgPreview.src = oFREvent.target.result;
+    }
+  }
 </script>
 
 @endsection()
